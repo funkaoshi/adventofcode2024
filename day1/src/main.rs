@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use std::iter::zip;
 
 fn main() {
@@ -33,12 +34,16 @@ pub fn part_1(input: &str) -> i64 {
 pub fn part_2(input: &str) -> i64 {
     let (left, right) = split_lists(input);
 
+    let mut frequency: HashMap<i64, i64> = HashMap::new();
+    for x in right.into_iter() {
+        frequency.entry(x).and_modify(|v| *v += 1).or_insert(1);
+    }
+
     // the similarity between the two lists is the sum of the number on left
     // multiplied by the number of times it appears in the list on on the right.
     let similarity = left
         .into_iter()
-        // todo: how do you avoid this clone!
-        .map(|x| x * right.clone().into_iter().filter(|y| x == *y).count() as i64)
+        .map(|x| x * frequency.get(&x).unwrap_or(&0))
         .sum();
 
     similarity
