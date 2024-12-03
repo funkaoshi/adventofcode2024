@@ -41,11 +41,9 @@ pub fn part_2(input: &str) -> usize {
     let safe = reports
         .into_iter()
         .filter(|r| {
-            for (i, _) in r.iter().enumerate() {
-                let mut sub_report = r.clone();
-                sub_report.remove(i);
-                let safe = is_safe(&sub_report);
-                if safe {
+            for i in 0..r.len() {
+                let sub_report = [&r[..i], &r[i + 1..]].concat();
+                if is_safe(&sub_report) {
                     return true;
                 }
             }
