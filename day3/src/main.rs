@@ -33,23 +33,36 @@ fn input_to_instructions_filtered(input: &str) -> Vec<MulInstruction> {
     let re =
         Regex::new(r"mul\((?<x>\d{1,3}),(?<y>\d{1,3})\)|(?<do>do\(\))|(?<dont>don't\(\))").unwrap();
     let mut save_mul_ops = true;
-    let mut instructions: Vec<MulInstruction> = vec![];
-    for c in re.captures_iter(input) {
-        if let Some(_) = c.name("do") {
-            save_mul_ops = true;
-            continue;
-        } else if let Some(_) = c.name("dont") {
-            save_mul_ops = false;
-            continue;
-        }
 
-        // we have a mul(x,y) statement
-        if save_mul_ops {
+    let instructions: Vec<MulInstruction> = re
+        .captures_iter(input)
+        .filter(|c| {
+            // fetched a "do()" statement, so mark that we're accepting mul operations
+            if let Some(_) = c.name("do") {
+                save_mul_ops = true;
+                return false;
+            }
+
+            // fetched a "don't()" statement, so stop accepting mul operations
+            if let Some(_) = c.name("dont") {
+                save_mul_ops = false;
+                return false;
+            }
+
+            // we have a mul(x,y) statement, save if we are accepting them
+            if save_mul_ops {
+                return true;
+            }
+
+            // shouldn't get here
+            false
+        })
+        .map(|c| {
             let x = c.name("x").unwrap().as_str().parse().unwrap();
             let y = c.name("y").unwrap().as_str().parse().unwrap();
-            instructions.push(MulInstruction { x, y });
-        }
-    }
+            MulInstruction { x, y }
+        })
+        .collect();
 
     instructions
 }
