@@ -1,10 +1,39 @@
 # Advent of Code 2024
 
-I have a job now, so I can't imagine i'll make it too far with Advent of Code
-this time around, but I do want to learn Rust so maybe it will all balance
+I have a job now, so I can't imagine i'll make it too far with [Advent of Code][1]
+this time around, but I do want to learn Rust, so maybe this will all balance
 out.
 
 Currently you can `cargo run` inside the folder for each day to get the answers
-for that days problems.
+for that days problems. `cargo test` will run the the code against the test 
+input.
+
+## Commentary
+
+[### Day 1: Historian Hysteria](https://adventofcode.com/2024/day/1)
+
+A nice straightforward problem to get things going. For part 2, I learned that 
+`into_iter` consumes what it iterates over, so you can't iterate over the same 
+vector twice. My original solution cloned the vector before iterating. The
+smarter solution was to make a histogram you can consult when calculating the
+required score. Also learned `include_str!` is a thing. Rust isn't quite as
+cumbersome as I had feared for doing these sorts of puzzles.
+
+[### Day 2: Red-Nosed Reports](https://adventofcode.com/2024/day/2)
+
+Another fairly straight forward problem, though it feels like there is probably
+a nicer solution than what I built. Learned a little bit about slices in the 
+process of trying to figure out how to generate combinations of each report for
+part 2. 
+
+[### Day 3: Mull It Over](https://adventofcode.com/2024/day/3)
+
+Esentially just a Regex question. Useful since I needed to learn how Regex works
+in Rust. Am curious for part 2 if there is a tidier way to generate the filtered
+list of `mul(x,y)` operations.
+
+[### Day 4: Ceres Search](https://adventofcode.com/2024/day/4)
+
+...
 
 [1]: https://adventofcode.com/2024
