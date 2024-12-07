@@ -36,6 +36,16 @@ list of `mul(x,y)` operations.
 
 ...
 
+[### Day 5: Print Queue](https://adventofcode.com/2024/day/5)
+
+...
+
+[### Day 6: Guard Gallivant](https://adventofcode.com/2024/day/6)
+
+Initial solution is probably the most naive one, just walking the map
+recursively. It doesn't feel like it'll work out for the second part of this
+problem, which I have yet to do!
+
 [### Day 7: Bridge Repair](https://adventofcode.com/2024/day/7)
 
 Pretty straightforward recursive solution. I'm curious if this would be too
