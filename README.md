@@ -52,7 +52,11 @@ Pretty straightforward recursive solution. I'm curious if this would be too
 slow with a language like Python. It's 1:00AM, so should think about whether
 you can start the process off in a way that feels less goofy.
 
+[### Day 8: Resonant Collinearity](https://adventofcode.com/2024/day/8)
 
+
+Again, what feels like a naive solution. Will revist later. Just trying not to
+fall behind!
 
 
 [1]: https://adventofcode.com/2024
